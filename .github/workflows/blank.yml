@@ -23,6 +23,6 @@ jobs:
       - name: Deploy CloudFormation Stack
         run: |
           aws cloudformation deploy \
-            --template-file template.yaml \
+            --template-file EC2_Deployment_Template.yaml \
             --stack-name VPCDeploymentStack \
             --capabilities CAPABILITY_NAMED_IAM
