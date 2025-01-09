@@ -3,7 +3,7 @@ name: Deploy CloudFormation Template
 on:
   push:
     branches:
-      - main
+      - main  # Trigger für Änderungen am main-Branch
 
 jobs:
   deploy:
@@ -23,5 +23,6 @@ jobs:
       - name: Deploy CloudFormation Stack
         run: |
           aws cloudformation deploy \
-            --template-file vpc-deployment.yaml \
-            --stack-name VPCDeploymentStack
+            --template-file template.yaml \
+            --stack-name VPCDeploymentStack \
+            --capabilities CAPABILITY_NAMED_IAM
