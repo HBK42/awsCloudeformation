@@ -3,23 +3,26 @@ name: Deploy CloudFormation Template
 on:
   push:
     branches:
-      - main  # Trigger für Änderungen am main-Branch
+      - main  # Du kannst den Branch nach Bedarf anpassen
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout des Codes
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2. AWS-Zugangsdaten konfigurieren
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-1  # Hier kannst du die Region anpassen
 
+      # 3. CloudFormation Stack deployen
       - name: Deploy CloudFormation Stack
         run: |
           aws cloudformation deploy \
